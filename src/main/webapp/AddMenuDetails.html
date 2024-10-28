@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery - Menu Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            background: url(https://images.creativemarket.com/0.1.0/ps/3697754/1820/1213/m1/fpnw/wm1/p1hmcmuq12mudyu3rcl25sw529wgp9nijndqae6vdzezw2hwk5epxrfjut6opsly-.jpg?1512594315&s=bef394142f0f7764d2eded2d981f9c38) no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form {
+            background-color: white;
+            border: solid 2px #c30e17;
+            border-radius: 10px;
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table td {
+            padding: 10px 0;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="text"], 
+        input[type="tel"], 
+        input[type="email"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color:#c30e17;
+             color: white; 
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            
+        }
+
+        button:hover {
+            background-color:#e0525a;
+        }
+    </style>
+</head>
+<body>
+    <form class="form" action="menuregister" method="post">
+        <h1 class="heading">Register MenuItems</h1>
+        <table>
+        <tr>
+                <td><label for="restaurantid">Restaurant ID</label></td>
+                <td><input type="text" id="username" name="restaurantid"></td>
+            </tr>
+            <tr>
+                <td><label for="Itemname">Item Name</label></td>
+                <td><input type="text" id="username" name="Itemname"></td>
+            </tr>
+            <tr>
+                <td><label for="description">Description</label></td>
+                <td><input type="text" id="mobile" name="description"></td>
+            </tr>
+            <tr>
+                <td><label for="price">Price</label></td>
+                <td><input type="text" id="email" name="price"></td>
+            </tr>
+            <tr>
+                <td><label for="isactive">IsActive(Yes/No)</label></td>
+                <td><input type="text" id="password" name="isActive"></td>
+            </tr>
+           
+            <tr>
+                <td><label for="Itemimage">Item Image</label></td>
+                <td><input type="text" id="address" name="imagepath"></td>
+            </tr>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Word Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .hidden-word {
+            font-size: 24px;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+        .input-container {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            font-size: 18px;
+            padding: 10px;
+            width: 50px;
+            text-align: center;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .message {
+            font-size: 18px;
+            color: red;
+        }
+        .hangman-img {
+            margin: 20px 0;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Word Game</h1>
+        <div>
+            <label for="category">Choose a category:</label>
+            <select id="category">
+                <option value="0">Animals</option>
+                <option value="1">Birds</option>
+                <option value="2">Vehicles</option>
+                <option value="3">FoodItems</option>
+            </select>
+        </div>
+        <button onclick="startGame()">Start Game</button>
+
+        <div id="game-section" style="display: none;">
+            <div class="hidden-word" id="hidden-word"></div>
+            <div class="input-container">
+                <input type="text" id="guess" maxlength="1" />
+                <button onclick="makeGuess()">Guess</button>
+            </div>
+            <div class="message" id="message"></div>
+            <img id="hangman-image" class="hangman-img" src="./hangman0.jpg" alt="Hangman Image">
+            <div><strong>Attempts Left:</strong> <span id="attempts-left">5</span></div>
+        </div>
+    </div>
+
+    <script>
+        const words = [
+            ["LION", "TIGER", "CHEETAH", "ELEPHANT", "CROCODILE"],
+            ["CROW", "EAGLE", "PARROT"],
+            ["MARUTI", "HUNDAI", "AADI", "BENZ", "MAHINDRA"],
+            ["IDLY", "CHAPATI", "PONGAL", "VADA"]
+        ];
+
+        let selectedWord = "";
+        let displayedWord = "";
+        let guessedLetters = [];
+        let attempts = 5;
+        
+        function startGame() {
+            const categoryIndex = parseInt(document.getElementById("category").value);
+            const categoryWords = words[categoryIndex];
+            const randomIndex = Math.floor(Math.random() * categoryWords.length);
+            selectedWord = categoryWords[randomIndex];
+            displayedWord = "_".repeat(selectedWord.length);
+            guessedLetters = [];
+            attempts = 5; // Reset attempts
+            document.getElementById("hidden-word").innerText = displayedWord;
+            document.getElementById("message").innerText = "";
+            document.getElementById("game-section").style.display = "block";
+            document.getElementById("attempts-left").innerText = attempts;
+            document.getElementById("hangman-image").src = `./hangman0.jpg`; // Reset image
+        }
+
+        function makeGuess() {
+            const guessInput = document.getElementById("guess");
+            const guess = guessInput.value.toUpperCase();
+            guessInput.value = "";
+            guessInput.focus();
+
+            if (guessedLetters.includes(guess)) {
+                document.getElementById("message").innerText = `${guess} has already been guessed.`;
+                return;
+            }
+
+            guessedLetters.push(guess);
+
+            if (selectedWord.includes(guess)) {
+                let newDisplayedWord = "";
+                for (let i = 0; i < selectedWord.length; i++) {
+                    if (guessedLetters.includes(selectedWord[i])) {
+                        newDisplayedWord += selectedWord[i];
+                    } else {
+                        newDisplayedWord += "_";
+                    }
+                }
+                displayedWord = newDisplayedWord;
+                document.getElementById("hidden-word").innerText = displayedWord;
+
+                if (displayedWord === selectedWord) {
+                    document.getElementById("message").innerText = "Congratulations! You guessed the word!";
+                    document.getElementById("guess").disabled = true;
+                }
+            } else {
+                attempts--;
+                document.getElementById("attempts-left").innerText = attempts;
+                document.getElementById("message").innerText = `${guess} is not in the word.`;
+                document.getElementById("hangman-image").src = `./hangman${5 - attempts}.jpg`; // Change image
+
+                if (attempts === 0) {
+                    document.getElementById("message").innerText = `Game Over! The word was ${selectedWord}.`;
+                    document.getElementById("guess").disabled = true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

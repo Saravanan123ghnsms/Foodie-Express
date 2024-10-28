@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>FoodApp</display-name>
+  <welcome-file-list>
+    <welcome-file>welcomefoodapp.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet-mapping>
+       <servlet-name>Register User</servlet-name>
+       <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <servlet-name>Register User</servlet-name>
+      <servlet-class>com.food.servletprograms.RegistrationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+       <servlet-name>Restaurant Register</servlet-name>
+       <url-pattern>/restaurantregister</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <servlet-name>Restaurant Register</servlet-name>
+      <servlet-class>com.food.servletprograms.RegisterRestaurant</servlet-class>
+  </servlet>
+   <servlet-mapping>
+       <servlet-name>MenuItem Register</servlet-name>
+       <url-pattern>/menuregister</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <servlet-name>MenuItem Register</servlet-name>
+      <servlet-class>com.food.servletprograms.RegisterMenuItems</servlet-class>
+  </servlet>
+ 
+</web-app>
